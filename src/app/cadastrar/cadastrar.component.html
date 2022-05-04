@@ -11,36 +11,36 @@
 
           <div class="form-group">
             <label for="nome">Nome</label>
-            <input class="form-control" type="text" name="nome" id="nome" placeholder="Sua nome">
+            <input [(ngModel)]='user.nome' class="form-control" type="text" name="nome" id="nome" placeholder="Sua nome" >
           </div>
           <div class="form-group">
             <label for="usuario">Usuário</label>
-            <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Seu usuário">
+            <input [(ngModel)]='user.usuario' class="form-control" type="text" name="usuario" id="usuario" placeholder="Seu usuário ">
           </div>
           <div class="form-group">
             <label for="foto">Link da foto</label>
-            <input class="form-control" type="text" name="foto" id="foto" placeholder="Link da sua foto">
+            <input [(ngModel)]='user.foto' class="form-control" type="text" name="foto" id="foto" placeholder="Link da sua foto">
           </div>
           <div class="form-group">
             <label for="senha">Senha</label>
-            <input class="form-control" type="password" name="senha" id="senha" placeholder="Sua senha">
+            <input (input)="confirmaSenha($event)" class="form-control" type="password" name="senha" id="senha" placeholder="Sua senha">
           </div>
           <div class="form-group">
             <label for="confirmaSenha">Confirmar Senha</label>
-            <input class="form-control" type="password" name="confirmaSenha" id="confirmaSenha" placeholder="Confirme sua senha">
+            <input [(ngModel)]='user.senha' class="form-control" type="password" name="confirmaSenha" id="confirmaSenha" placeholder="Confirme sua senha">
           </div>
 
           <div class="form-group">
             <label for="tipo">Tipo de Usuário</label>
-            <select class="form-control" name="tipo" id="tipo">
+            <select class="form-control" name="tipo" id="tipo" (change)="tipoUser($event)">
               <option>Selecione o tipo de usuário:</option>
               <option value="normal">normal</option>
               <option value="adm">Administrador</option>
             </select>
           </div>
           <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-warning mr-4" routerLink="/entrar">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn mr-4 text-light" style="background-color:#8c836b ;" routerLink="/entrar">Cancelar</button>
+            <button type="submit" class="btn text-light" style="background-color:#fbc304" (click)="cadastrar()">Cadastrar</button>
           </div>
         </div>
       </div>
