@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto d-flex align-items-center">
       <li class="nav-item active">
-        <img src="{{foto}}" alt="Imagem do usuário" height = 50px width = 50px class="rounded rounded-circle img-fluid">
+        <img [src]="foto" onerror="this.src = 'https://imgur.com/ifHD9GP'" alt="Imagem do usuário" height = 50px width = 50px class="rounded rounded-circle img-fluid">
       </li>
       <li class="nav-item pl-3">
         <p class="m-0 font-weight-bold text-white font-size-16">Olá, {{nome}}</p>

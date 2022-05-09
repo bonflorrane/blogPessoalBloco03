@@ -1,6 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,300;1,400;1,700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800&display=swap');
+
+
+
 html{
   scroll-behavior: smooth;
+  font-family: 'Merriweather', serif;
+  font-family: 'Roboto Slab', serif;
 }
 
 .fs-54{
