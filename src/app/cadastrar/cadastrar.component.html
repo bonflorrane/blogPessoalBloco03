@@ -10,9 +10,9 @@
           <h1 class="text-center">Cadastro</h1>
 
           <div class="form-group">
-            <label for="nome">Nome</label>
+            <label for="nome">Nome</label> <!--o user.pontoAlgumaCoisa aparece aqui pois foi declarado como objeto em cadastrar.components.ts-->
             <input [(ngModel)]='user.nome' class="form-control" type="text" name="nome" id="nome" placeholder="Sua nome" >
-          </div>
+          </div><!--ngModel lê tudo que está sendo adicionado ao input. Para haver a implementação real do cadastro é necessário pegar as informações que estão sendo digitadas no formulário de cadastro, e para que isto ocorra, é necessário adicionar em app.module.ts um módulo do angular chamado FormsModule. Melhor colocá-lo perto do input, pode gerar alguns erros-->
           <div class="form-group">
             <label for="usuario">Usuário</label>
             <input [(ngModel)]='user.usuario' class="form-control" type="text" name="usuario" id="usuario" placeholder="Seu usuário ">
@@ -23,7 +23,7 @@
           </div>
           <div class="form-group">
             <label for="senha">Senha</label>
-            <input (input)="confirmaSenha($event)" class="form-control" type="password" name="senha" id="senha" placeholder="Sua senha">
+            <input (input)="confirmaSenha($event)" class="form-control" type="password" name="senha" id="senha" placeholder="Sua senha"> <!--cirou um evento chamado input que chama um método confirmaSenha($evento). $ significa espera-->
           </div>
           <div class="form-group">
             <label for="confirmaSenha">Confirmar Senha</label>
@@ -32,15 +32,15 @@
 
           <div class="form-group">
             <label for="tipo">Tipo de Usuário</label>
-            <select class="form-control" name="tipo" id="tipo" (change)="tipoUser($event)">
+            <select class="form-control" name="tipo" id="tipo" (change)="tipoUser($event)"> <!--Ao escolher um select, você muda o tipo de usuário e com isto, o evento deve ser change. O $event irá pegar o valor do value-->
               <option>Selecione o tipo de usuário:</option>
               <option value="normal">normal</option>
               <option value="adm">Administrador</option>
             </select>
           </div>
           <div class="d-flex justify-content-center">
-            <button type="submit" class="btn mr-4 text-light" style="background-color:#8c836b;" routerLink="/entrar">Cancelar</button>
-            <button type="submit" class="btn text-light" style="background-color: #4b75e7 ;" (click)="cadastrar()">Cadastrar</button>
+            <button type="submit" class="btn mr-4 text-light" style="background-color:#8c836b;" routerLink='/entrar'>Cancelar</button> <!--routerLink: direcionando para página entrar, estando na página cadastrar-->
+            <button type="submit" class="btn text-light" style="background-color: #4b75e7 ;" (click)="cadastrar()">Cadastrar</button> <!--o botão cadastrar chama o método cadastrar por meio do evento clique-->
           </div>
         </div>
       </div>

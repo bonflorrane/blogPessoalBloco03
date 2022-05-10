@@ -1,4 +1,4 @@
-<app-menu *ngIf="auth.logado()"></app-menu>
-<router-outlet></router-outlet>
-<app-rodape></app-rodape>
+<app-menu *ngIf='auth.logado()'></app-menu> <!--Para que fosse possível fazer a lógica aqui foi necessário: criar método logado() em auth.service.ts e no app.component.ts criar o método constutor público auth-->
+<router-outlet></router-outlet> <!--deixa as rotas dinâmicas-->
+<app-rodape *ngIf='auth.logado()'></app-rodape>
 

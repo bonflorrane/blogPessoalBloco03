@@ -20,25 +20,25 @@ export class TemaComponent implements OnInit {
 
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {//será verificado a presença do token, assim como ocorreu no componente inicio. Já que para a pessoa ter acesso a página Tema ela deve estar logada. E caso deslogada, o menu e o rodapé não aparecem
     if(environment.token == ''){
       alert('Sua seção expirou, faça o login novamente.')
       this.router.navigate(['/entrar'])
     }
-    this.findAllTemas()// toda vez que iniciar a página tema, mostrará todos
+    this.findAllTemas()// toda vez que iniciar a página tema, mostrará todos temas
   }
 
-  findAllTemas(){
+  findAllTemas(){//para mostrar uma lista de temas (retorna um array de temas)
     this.temaService.getAllTema().subscribe((resp: Tema[])=>{
       this.listaTemas = resp
     })
   }
 
-  cadastrar(){
-    this.temaService.postTema(this.tema).subscribe((resp:Tema) =>{
+  cadastrar(){// será chamado no botão cadastrar no html.
+    this.temaService.postTema(this.tema).subscribe((resp:Tema) =>{//implementando o postTema
       this.tema = resp
       alert('Tema cadastrado com sucesso')
-      this.findAllTemas() 
+      this.findAllTemas()//após cadastrar, é pedido que mostre todos os temas de novo
       this.tema = new Tema() // com isso o ngModel = tema.descricao é apagado, mais por uma questão de UX
     })
 

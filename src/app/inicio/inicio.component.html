@@ -1,5 +1,4 @@
 <div class="container-fluid">
-
   <div class="row bg-secondary d-flex align-items-center">
     <div class="col-md-6 text-white">
       <div class="row d-flex justify-content-center">
@@ -10,9 +9,8 @@
       </div>
       <div class="row d-flex justify-content-center mt-3 mb-5">
         <div class="col-md-6 ">
-          <button class="btn btn-light mr-2" data-toggle="modal" data-target="#novaPostagem">Nova Postagem</button>
-          <a class="btn btn-outline-light" href="#postagens">Ver Postagens</a>
-
+          <button class="btn btn-light mr-2" data-toggle="modal" data-target="#novaPostagem">Nova Postagem</button> <!--O botão irá abrir o modal devido as propriedades ata-toggle="modal" data-target="#novaPostagem" -->
+          <a class="btn btn-outline-light" href="#postagens">Ver Postagens</a> <!-- Para que este href funcione e deslize até nav bar postagem, é necessário add import { HashLocationStrategy, LocationStrategy }  em app.module.ts-->
         </div>
       </div>
     </div>
@@ -22,10 +20,11 @@
   </div>
 </div>
 
-<div class="container mb-5 mt-5" id="postagens">
+<!--Navbar-->
+<div class="container mb-5 mt-5" id="postagens"> <!-- o id postagens é referenciado no href de nova postagem-->
   <nav>
     <div class="nav nav-tabs d-flex justify-content-center font-weight-bold" id="nav-tab" role="tablist">
-      <a class="nav-link active text-secondary" id="nav-todasPostagens-tab" data-toggle="tab" href="#todasPostagens" role="tab" aria-controls="nav-todasPostagens" aria-selected="true">Todas as Postagens</a>
+      <a class="nav-link active text-secondary" id="nav-todasPostagens-tab" data-toggle="tab" href="#todasPostagens" role="tab" aria-controls="nav-todasPostagens" aria-selected="true">Todas as Postagens</a> <!-- nav-link active: a primeira a ser mostrada-->
       <a class="nav-link text-secondary font-weight-bold" id="nav-minhasPostagens-tab" data-toggle="tab" href="#minhasPostagens" role="tab" aria-controls="nav-minhasPostagens" aria-selected="false">Minhas Postagens</a>
       <a class="nav-link text-secondary font-weight-bold" id="nav-postagemTema-tab" data-toggle="tab" href="#postagemTema" role="tab" aria-controls="nav-postagemTema" aria-selected="false">Postagens por Tema</a>
     </div>
@@ -36,8 +35,7 @@
     <div class="tab-pane fade" id="postagemTema" role="tabpanel" aria-labelledby="nav-postagemTema-tab">Postagens por Tema</div>
   </div>
 </div>
-
-
+<!--Modal-->
 <div class="modal fade" id="novaPostagem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -59,13 +57,13 @@
           </div>
           <div class="form-group">
             <label for="texto">Escolha um tema ou <a data-dismiss="modal" routerLink='/tema'>cadastre um novo</a>: </label>
-            <select name="tema" class='form-control' id="tema">
+            <select name="tema" class='form-control' id="tema"> <!-- Para que a rota tema funcione aqui, após a criação do componente tema (ng g c tema), é criado a rota tem em app.routing.module.ts-->
               <option value="">Temas</option>
             </select>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn" style="background-color:#8c836b;" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-danger">Publicar</button>
+            <button type="button" class="btn" style="background-color: #4b75e7;">Publicar</button>
           </div>
         </form>
       </div>

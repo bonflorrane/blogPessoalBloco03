@@ -1,27 +1,27 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
+  </button> <!--É importante deixar o button para responsividade, em telas menores o menu é agrupado nele-->
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto d-flex align-items-center">
+    <ul class="navbar-nav mr-auto d-flex align-items-center"> <!-- mr-auto: joga todo conteúdo para esquerda-->
       <li class="nav-item active">
-        <img [src]="foto" onerror="this.src = 'https://imgur.com/ifHD9GP'" alt="Imagem do usuário" height = 50px width = 50px class="rounded rounded-circle img-fluid">
+        <!--IMAGE FORM  STUDIO GHIBLI: https://www.ghibli.jp/works/chihiro/-->
+        <img [src]="foto" onerror="this.src = 'https://i.imgur.com/694SzWu.jpg'" alt="Imagem do usuário" height = 50px width = 50px class=" rounded-circle img-fluid"> <!--img-fluid: criar responsividade/ rounded-circle: imagem circular-->
       </li>
-      <li class="nav-item pl-3">
-        <p class="m-0 font-weight-bold text-white font-size-16">Olá, {{nome}}</p>
+      <li class="nav-item pl-3"> <!--pl-3: padding left para dar um espaço entre imagem e nome-->
+        <p class="m-0 font-weight-bold text-white font-size-16">Olá, {{nome}}</p> <!--a tag p tem uma margem para baixo por padrão, desta forma para deixar alinhado colocar m-0--> <!--{{}} interpolação para receber o que foi digitado em enviroment.nome-->
       </li>
       <li class="nav-item pl-3">
         <a href="">
-          <p class="text-white font-size-16 m-0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></p>
+          <p class="text-white font-size-16 m-0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></p> <!--add icone editar-->
         </a>
       </li>
     </ul>
 
-    <ul class="navbar-nav ml-auto d-flex align-items-center">
+    <ul class="navbar-nav ml-auto d-flex align-items-center"> <!--adicionando ícone/boton(para add um botão colocar dentro da tag a) sair-->
       <li class="nav-item pl-3">
-        <a (click)="sair()" class="m-0 font-weight-bold text-white font-size-16">Sair <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+        <a (click)="sair()" class="m-0 font-weight-bold text-white font-size-16">Sair <i class="fa fa-sign-out" aria-hidden="true"></i></a> <!--evento de click criado para o link-->
       </li>
 
     </ul>

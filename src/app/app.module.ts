@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common'; //Os modulos hash.. e Location são adicionado para que a rota não seja perdida, em específico a do href #postagem em inicio.component.html. Além de fazer o import aqui, eles devem ser adicionado como objetos em providers logo abaixo
 
 
 import { AppComponent } from './app.component';

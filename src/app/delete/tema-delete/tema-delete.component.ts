@@ -17,10 +17,10 @@ export class TemaDeleteComponent implements OnInit {
   constructor(
     private temaService: TemaService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute // necessário para pegar o id da rota atual
   ) { }
 
-  ngOnInit(){
+  ngOnInit(){// precisa estar logado para acessar delete, por isso a verificação em tantas páginas. É preciso garantir que está logado
     if(environment.token == ''){
       this.router.navigate(['/entrar'])
     }

@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment.prod';
   styleUrls: ['./tema-edit.component.css']
 })
 export class TemaEditComponent implements OnInit {
-  tema: Tema = new Tema()
+  tema: Tema = new Tema() // instanciando a variável do tipo objeto Tema
 
   constructor(
     private temaService: TemaService,
@@ -18,16 +18,16 @@ export class TemaEditComponent implements OnInit {
     private route: ActivatedRoute // fornece a rota ativa
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {// garantir que usuario está logado
     if(environment.token == ''){
       this.router.navigate(['/entrar'])
     }
-    let id = this.route.snapshot.params['id']
-    this.findByIdTema(id)
+    let id = this.route.snapshot.params['id']// o id está sendo pego da rota ativa
+    this.findByIdTema(id) // com o id, eu trago o tema
   }
-  findByIdTema(id:number){
+  findByIdTema(id:number){// o id está vindo da rota ques está ativa no momento por isso a dependência ActivetedRoute
     this.temaService.getByIdTema(id).subscribe((resp: Tema)=>{
-      this.tema = resp
+      this.tema = resp// a variável tema instanciada recebe a resposta do tema
     })
   }
 

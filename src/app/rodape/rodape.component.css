@@ -1,5 +1,5 @@
 ul.social-network{
-  list-style: none;
+  list-style: none; /*Para não aparecer square/disc/circule da ul/li */
   padding: 0;
 }
 
@@ -13,13 +13,13 @@ ul.social-network li{
   color: white;
   padding: 10px;
 }
-.fa-facebook-official:hover{
+.fa-facebook-square:hover{
   color: #3b5998;
 }
 .fa-instagram:hover{
   color: #C13584;
 }
-.fa-linkedin-square{
+.fa-linkedin-square:hover{
   color: #0072b1;
 
 }

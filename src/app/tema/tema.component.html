@@ -2,7 +2,7 @@
   <div class="row bg-secondary">
     <div class="col-md-12 text-white">
 
-      <a routerLink="/inicio" class="text-white text-left">
+      <a routerLink='/inicio' class="text-white text-left">
         <i class="fa fa-angle-double-left" aria-hidden="true"></i> início
       </a>
 
@@ -12,11 +12,11 @@
       <div class="row d-flex justify-content-center mt-4 mb-5">
         <div class="col-md-3">
           <div class="form-group">
-            <input [(ngModel)]= 'tema.descricao' type="text" class="form-control" id="descricao" placeholder="Digite a descrição do tema">
+            <input [(ngModel)]= 'tema.descricao' type="text" class="form-control" id="descricao" placeholder="Digite a descrição do tema"><!-- apesar da model tema ter 3 atributos, somente descrição é obrigatório, desta forma foi criado apenas um ngModel-->
           </div>
 
           <div class="d-flex justify-content-center">
-            <button class="btn btn-light" (click)='cadastrar()'>Cadastrar</button>
+            <button class="btn btn-light" (click)='cadastrar()'>Cadastrar</button> <!-- o método cadastrar que está em tema.component.ts será chamado por meio de um evento click-->
           </div>
         </div>
       </div>
@@ -40,15 +40,15 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Descrição</th>
-            <th scope="col" class="">Modificações</th>
+            <th scope="col" class="text-right">Modificações</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let item of listaTemas'>
-            <th>{{item .id}}</th>
-            <td>{{item .descricao}}</td>
+          <tr *ngFor='let item of listaTemas'> <!--  variável item vai tema por tema dentro da listaTemas que é a resposta do métod findAllTema(), e mostrará-->
+            <th>{{item .id}}</th> <!--mostrar o id do tema que foi cadastrado-->
+            <td>{{item .descricao}}</td> <!--mostra a descrição (nome do tema)-->
             <td class="d-flex justify-content-end">
-              <button class=" btn btn-info mr-3" [routerLink]="['/tema-edit', item.id]">Editar</button>
+              <button class=" btn btn-info mr-3" [routerLink]="['/tema-edit', item.id]">Editar</button> <!--Rota interna: PropertyBind [routerLink] = "['']", desta forma é repassado o id atual daqule item-->
               <button class="btn text-right" [routerLink]="['/tema-delete', item.id]"   style="background-color:#8c836b;">Apagar</button>
             </td>
           </tr>

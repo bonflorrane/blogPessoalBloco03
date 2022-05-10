@@ -3,7 +3,7 @@
 
 
 html{
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* ao clicar em Ver Postagem deslize de maneira suave para o final da tela no navbar contendo as postagens*/
   font-family: 'Merriweather', serif;
   font-family: 'Roboto Slab', serif;
 }
