@@ -11,6 +11,7 @@ export class MenuComponent implements OnInit {
 
   nome = environment.nome //ao entrar o nome, token, foto e o id do usuário é passado para o enviroment. Estes atributos são trazidos em uma variável local ao menu. E isto ocorre, pois em menu a foto e o nome do usuário são dinâmicos
   foto = environment.foto
+  id = environment.id // para manipular o botão edite precisarei saber o id do usuario. Após criar a váriavel ir até a tag <a> onde está o icone editar e adicione a rota para user-edit
 
 
   constructor(
