@@ -20,7 +20,21 @@ export class PostagemService {
     return this.http.get<Postagem[]>('http://localhost:8080/postagens', this.token)
   }
 
+  getByIdPostagem(id: number): Observable<Postagem>{
+    return this.http.get<Postagem>(`http://localhost:8080/postagens/${id}`, this.token)
+  }
+
   postPostagem(postagem: Postagem): Observable<Postagem>{
     return this.http.post<Postagem>('http://localhost:8080/postagens',postagem, this.token)
   }
+
+  // putPostagem foi criado após: postagem-edit (ng g c edit/postagem-edit -> model Postagem)// o mesmo vale para delete
+  putPostagem(postagem: Postagem): Observable<Postagem>{
+    return this.http.put<Postagem>('http://localhost:8080/postagens', postagem, this.token)
+  }
+
+  deletePostagem(id: number){
+    return this.http.delete(`http://localhost:8080/postagens/${id}`, this.token)
+  }
+
 }
