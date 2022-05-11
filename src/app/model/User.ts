@@ -7,5 +7,5 @@ export class User{ //olhe o swagger para completar a model
   public senha: string;
   public foto: string;
   public tipo: string;
-  public postagem:Postagem[];// 1 usuário para várias postagens, por isso a necessidade do array
+  public postagens:Postagem[];// 1 usuário para várias postagens, por isso a necessidade do array
 }

@@ -24,15 +24,55 @@
 <div class="container mb-5 mt-5" id="postagens"> <!-- o id postagens é referenciado no href de nova postagem-->
   <nav>
     <div class="nav nav-tabs d-flex justify-content-center font-weight-bold" id="nav-tab" role="tablist">
-      <a class="nav-link active text-secondary" id="nav-todasPostagens-tab" data-toggle="tab" href="#todasPostagens" role="tab" aria-controls="nav-todasPostagens" aria-selected="true">Todas as Postagens</a> <!-- nav-link active: a primeira a ser mostrada-->
-      <a class="nav-link text-secondary font-weight-bold" id="nav-minhasPostagens-tab" data-toggle="tab" href="#minhasPostagens" role="tab" aria-controls="nav-minhasPostagens" aria-selected="false">Minhas Postagens</a>
-      <a class="nav-link text-secondary font-weight-bold" id="nav-postagemTema-tab" data-toggle="tab" href="#postagemTema" role="tab" aria-controls="nav-postagemTema" aria-selected="false">Postagens por Tema</a>
+      <a class=" nav-item nav-link active text-secondary" id="nav-todasPostagens-tab" data-toggle="tab" href="#todasPostagens" role="tab" aria-controls="nav-todasPostagens" aria-selected="true">Todas as Postagens</a> <!-- nav-link active: a primeira a ser mostrada-->
+      <a (click)='findByIdUser()' class=" nav-item nav-link text-secondary font-weight-bold" id="nav-minhasPostagens-tab" data-toggle="tab" href="#minhasPostagens" role="tab" aria-controls="nav-minhasPostagens" aria-selected="false">Minhas Postagens</a> <!--ao cliccar em minhas postagem chama o método findByIdUser e ele retorna um usuário, e com isso consigo lista as postagens referenciadas no card minhas postagens, em específico representadas pelo *ngFor-->
+
+      <a  class="nav-item nav-link text-secondary font-weight-bold" id="nav-postagemTema-tab" data-toggle="tab" href="#postagemTema" role="tab" aria-controls="nav-postagemTema" aria-selected="false">Postagens por Tema</a>
     </div>
   </nav>
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">Todas as Postagens</div>
-    <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="nav-minhasPostagens-tab">Minhas Postagens</div>
-    <div class="tab-pane fade" id="postagemTema" role="tabpanel" aria-labelledby="nav-postagemTema-tab">Postagens por Tema</div>
+  <div class="tab-content mt-5" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
+      <div class="card-colums">
+        <div class="card text-center" *ngFor='let item of listaPostagens'>
+          <div class="card-body">
+            <h5 class="card-title m-0">{{item.titulo}}</h5>
+            <small class="text-muted">Tema: {{item.tema.descricao}}</small> <!--para aparecer o tema abaixo do título da publicação-->
+            <p class="card-text mt-3">{{item.texto}}</p>
+            <p class="card-text"><small class="text-muted">{{item.data | date:'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}</small></p>
+            <p class="card-text"><small class="text-muted">by: {{item.usuario.nome}}</small></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="nav-minhasPostagens-tab">
+      <div class="card-colums">
+        <div class="card text-center" *ngFor='let item of user.postagens'> <!--user.postagens, está no plural pois estamos pegando a o objeto postagens que criamos como atributo na model usuário no back-end, também representado no front em model user-->
+          <div class="card-body">
+            <h5 class="card-title m-0">{{item.titulo}}</h5>
+            <small class="text-muted">Tema: {{item.tema.descricao}}</small> <!--para aparecer o tema abaixo do título da publicação-->
+            <p class="card-text mt-3">{{item.texto}}</p>
+            <p class="card-text"><small class="text-muted"> {{item.data | date:'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}</small></p> <!---NÃO ESQUECE DE MUDAR O BACK-END PARA APARECER HORA CERTA-->
+            <p class="card-text"><small class="text-muted">by: {{user.nome}}</small></p> <!--item.user.nome deu um erro de recursividade, com isso,pegar direto o atributo-->
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="tab-pane fade" id="postagemTema" role="tabpanel" aria-labelledby="nav-postagemTema-tab">
+      <div class="card-colums" *ngFor='let item of listaTemas'>
+        <div class="card text-center" *ngFor='let item of tema.postagem'>
+          <div class="card-body">
+            <h5 class="card-title m-0">{{item.titulo}}</h5>
+            <p class="card-text mt-3">{{item.texto}}</p>
+            <p class="card-text"><small class="text-muted"> {{item.data | date:'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}</small></p> <!---NÃO ESQUECE DE MUDAR O BACK-END PARA APARECER HORA CERTA-->
+            <p class="card-text"><small class="text-muted">by: {{user.nome}}</small></p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
   </div>
 </div>
 <!--Modal-->
@@ -49,21 +89,23 @@
         <form>
           <div class="form-group">
             <label for="titulo" class="col-form-label">Título</label>
-            <input type="text" class="form-control" id="titulo" placeholder="Digite o título">
+            <input [(ngModel)]='postagem.titulo' name="titulo" type="text" class="form-control" id="titulo" placeholder="Digite o título">
           </div>
           <div class="form-group">
             <label for="texto" class="col-form-label">Texto</label>
-            <textarea class="form-control" name="texto" id="texto" rows="3"></textarea>
+            <textarea [(ngModel)]='postagem.texto' class="form-control" name="texto" id="texto" rows="3"></textarea>
           </div>
           <div class="form-group">
             <label for="texto">Escolha um tema ou <a data-dismiss="modal" routerLink='/tema'>cadastre um novo</a>: </label>
-            <select name="tema" class='form-control' id="tema"> <!-- Para que a rota tema funcione aqui, após a criação do componente tema (ng g c tema), é criado a rota tem em app.routing.module.ts-->
-              <option value="">Temas</option>
+            <select  [(ngModel)]='idTema' name="tema" class='form-control' id="tema" (change)="findByIdTema()"> <!-- Para que a rota tema funcione aqui, após a criação do componente tema (ng g c tema), é criado a rota tem em app.routing.module.ts-->
+              <option *ngFor='let item of listaTemas' value="{{item.id}}"> <!--Criou um for para criar uma lista de temas, lincando o id pelo ngModel = idTema a descrição, item.descricao, ( nome do tema)-->
+               {{item.descricao}}
+              </option>
             </select>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn" style="background-color:#8c836b;" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn" style="background-color: #4b75e7;">Publicar</button>
+            <button type="button" class="btn" style="background-color: #4b75e7;" (click)="publicar()" data-dismiss="modal">Publicar</button>
           </div>
         </form>
       </div>

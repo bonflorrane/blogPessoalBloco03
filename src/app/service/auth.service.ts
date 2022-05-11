@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
@@ -14,6 +14,16 @@ export class AuthService {//A Service irá acessar os endpoints criados no backe
     private http: HttpClient //é necessário fazer o import do médoto HttpClient. No entanto, para que isto ocorra aqui. É necessário, ir antes em: app.modules: (1- em imports:[escrever HttpClientModule]) -> (2 - é necessário adicionar o import dele na primeira linha do programa, não é feito automaticamente: import{HttpClientModule} from '@angular/common/http')
   ) { }
 
+  token ={
+    headers: new HttpHeaders().set('Authorization', environment.token),
+  };
+  refreshToken(){
+    this.token = {
+      headers: new HttpHeaders().set('Authorization', environment.token),
+    };
+  }
+
+
   entrar(userLogin: UserLogin): Observable<UserLogin>{// precisa receber uma variável  que tem um tipo objeto por causa da model UserLogin(parâmetro)do tipo UserLogin(model criada). Observable: garante que um userLogin será adicionado aqui (garante a ida e a volta como Json do tipo UserLogin)
     return this.http.post<UserLogin>('http://localhost:8080/usuarios/logar', userLogin) // irá retornar um post  do tipo UserLogin(caminho porta do back-end, passando o objeto recebido como parâmetro, e que quero enviar para o back-end)
   }
@@ -21,6 +31,11 @@ export class AuthService {//A Service irá acessar os endpoints criados no backe
   cadastrar(user:User):Observable<User>{//precisa de um objeto do tipo User, sendo que é garantido que um user será adicionado aqui
     return this.http.post<User>('http://localhost:8080/usuarios/cadastrar', user)// <User>: garante que será entregue um usuário do tipo User para o endpoint
   }
+
+  getByIdUser(id:number): Observable<User>{
+    return this.http.get<User>(`http://localhost:8080/usuarios/${id}`, this.token)
+  }
+
 
   logado(){//método logado para saber se o usuário está logado ou não ( se um token foi gerado ou não). Lembrando que o token só é gerado quando a pessoa clica em entrar.
     let ok: boolean = false
@@ -30,6 +45,8 @@ export class AuthService {//A Service irá acessar os endpoints criados no backe
     }
     return ok
   }
+
+
 
 
 }
